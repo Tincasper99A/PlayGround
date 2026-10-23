@@ -1,0 +1,19 @@
+{
+  "name": "mirage-city-online",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MIRAGE CITY ONLINE - a premium open-world 3D crime sandbox for mobile browsers.",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "verify": "vite build && node scripts/verify.mjs"
+  },
+  "dependencies": {
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "vite": "^8.3.5"
+  }
+}

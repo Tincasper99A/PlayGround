@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#05050b" />
+  <meta name="description" content="MIRAGE CITY ONLINE is an original open-world 3D crime sandbox built for phones, tablets, and desktop browsers." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Mirage City" />
+  <meta property="og:title" content="MIRAGE CITY // ONLINE" />
+  <meta property="og:description" content="Own the night. An original open-world crime sandbox for iOS, Android, and the web." />
+  <meta property="og:type" content="website" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/icons/icon-180.png" />
+  <link rel="preload" href="/fonts/bebas-neue.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin />
+  <title>MIRAGE CITY // ONLINE</title>
+</head>
+<body>
+  <div id="app">
+    <canvas id="game" aria-label="Mirage City 3D open world"></canvas>
+    <div class="scene-grade"></div>
+    <div class="vignette"></div>
+    <div class="grain"></div>
+
+    <div id="boot" class="boot">
+      <div class="boot-mark"><span>M</span></div>
+      <div class="boot-title">MIRAGE CITY</div>
+      <div class="boot-sub">INITIALIZING NIGHT SHIFT</div>
+      <div class="boot-bar"><i></i></div>
+      <div class="boot-status">BUILDING THE DISTRICT</div>
+    </div>
+
+    <section id="landing" class="landing" aria-label="Main menu">
+      <header class="landing-nav">
+        <div class="brand">
+          <div class="brand-mark"><span>M</span></div>
+          <div class="brand-type">
+            <strong>MIRAGE</strong>
+            <div><span>CITY</span><em>ONLINE</em></div>
+          </div>
+        </div>
+        <div class="nav-status">
+          <span class="server-pill"><i class="live-dot"></i> LIVE SERVER</span>
+          <span class="nav-time" id="landing-clock">23:47</span>
+          <button id="landing-settings" class="icon-button" aria-label="Settings">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.2a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6Zm9 3.8-2.1-.7a7 7 0 0 0-.8-2l1.1-1.9-2.6-2.6-1.9 1.1a7 7 0 0 0-2-.8L12 3H8.4l-.7 2.1a7 7 0 0 0-2 .8L3.8 4.8 1.2 7.4l1.1 1.9a7 7 0 0 0-.8 2L0 12v3.6l2.1.7a7 7 0 0 0 .8 2l-1.1 1.9 2.6 2.6 1.9-1.1a7 7 0 0 0 2 .8l.7 2.1H12l.7-2.1a7 7 0 0 0 2-.8l1.9 1.1 2.6-2.6-1.1-1.9a7 7 0 0 0 .8-2l2.1-.7V12Z" transform="translate(1.5 0) scale(.86)"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="landing-content">
+        <div class="eyebrow"><span></span> OPEN WORLD // MOBILE // ONLINE</div>
+        <h1>OWN THE<br /><span class="title-gradient">NIGHT.</span></h1>
+        <p class="lede">The city is yours after dark. Run contracts, steal the skyline, and disappear into a living neon metropolis built for touch.</p>
+        <div class="cta-row">
+          <button id="play-button" class="play-button" aria-label="Play">
+            <span class="play-triangle"></span>
+            <span class="play-label">PLAY</span>
+            <span class="play-meta">ENTER ONLINE</span>
+          </button>
+          <button id="howto-button" class="ghost-button">HOW TO PLAY</button>
+        </div>
+        <div class="platform-row">
+          <span class="platform-chip"><i class="ios-mark"></i> iOS</span>
+          <span class="platform-chip"><i class="android-mark"></i> ANDROID</span>
+          <span class="platform-chip">TABLET READY</span>
+          <span class="platform-chip installable">INSTALLABLE PWA</span>
+        </div>
+      </main>
+
+      <aside class="session-card" aria-label="Live session">
+        <div class="session-top">
+          <div>
+            <span class="session-kicker">LIVE SESSION</span>
+            <strong>NIGHT SHIFT</strong>
+          </div>
+          <span class="ping">23 <small>MS</small></span>
+        </div>
+        <div class="session-list">
+          <div class="session-row"><span class="session-avatar a1">V</span><div><strong>VEX</strong><small>Running the north loop</small></div><span class="session-lvl">42</span></div>
+          <div class="session-row"><span class="session-avatar a2">N</span><div><strong>NOVA</strong><small>Secured the dead drop</small></div><span class="session-lvl">38</span></div>
+          <div class="session-row"><span class="session-avatar a3">K</span><div><strong>KODA</strong><small>Shopping for new wheels</small></div><span class="session-lvl">51</span></div>
+          <div class="session-row"><span class="session-avatar a4">R</span><div><strong>RIVET</strong><small>Looking for a crew</small></div><span class="session-lvl">29</span></div>
+          <div class="session-row"><span class="session-avatar a5">S</span><div><strong>SABLE</strong><small>Bounty in Neon Mile</small></div><span class="session-lvl">47</span></div>
+        </div>
+        <div class="session-foot">
+          <span><i class="live-dot"></i> 6 OPERATIVES ONLINE</span>
+          <span>US-WEST</span>
+        </div>
+      </aside>
+
+      <div class="landing-footer">
+        <span>BUILD 1.0.7 // NIGHT SHIFT</span>
+        <span>TOUCH + KEYBOARD</span>
+        <span class="original-stamp">ORIGINAL WORLD</span>
+      </div>
+      <div class="landing-tag">A MIRAGE ORIGINAL</div>
+    </section>
+
+    <section id="hud" class="hud hidden" aria-hidden="true" aria-label="Game HUD">
+      <div class="hud-top-left">
+        <div class="identity-card">
+          <div class="avatar">NH</div>
+          <div class="identity-copy">
+            <div class="identity-name">NIGHTHAWK <span>LVL 27</span></div>
+            <div class="identity-cash" id="hud-cash">$0</div>
+          </div>
+          <button id="hud-mute" class="bare-icon" aria-label="Mute audio">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4V9Zm12-2 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="session-chip"><i class="live-dot"></i> MIRAGE ONLINE <b id="online-count">6</b> / 32</div>
+        <div id="event-feed" class="event-feed" aria-live="polite"></div>
+      </div>
+
+      <div id="mission" class="mission" aria-live="polite">
+        <div class="mission-top">
+          <span class="mission-tag">CONTRACT</span>
+          <span id="mission-title">NIGHT RUN</span>
+          <span id="mission-timer"></span>
+        </div>
+        <div class="mission-body">
+          <span class="mission-diamond"></span>
+          <span id="mission-objective">RECOVER ENCRYPTED DRIVES 1/3</span>
+          <span id="mission-distance"></span>
+        </div>
+      </div>
+
+      <div class="hud-top-right">
+        <div class="mini-panel">
+          <div class="mini-head">
+            <span id="hud-clock">23:47</span>
+            <span id="hud-session"><i class="live-dot"></i> 6 ONLINE</span>
+          </div>
+          <div class="mini-map-wrap">
+            <canvas id="minimap" width="190" height="190" aria-label="City minimap"></canvas>
+            <div class="mini-scan"></div>
+          </div>
+          <div class="mini-foot"><span>DOWNTOWN</span><span>US-WEST</span></div>
+        </div>
+        <div id="wanted" class="wanted">
+          <span class="wanted-label">WANTED</span>
+          <div id="wanted-stars" class="stars">
+            <i class="star">★</i><i class="star">★</i><i class="star">★</i><i class="star">★</i><i class="star">★</i>
+          </div>
+        </div>
+      </div>
+
+      <div class="crosshair" id="crosshair"><i></i><i></i><i></i><i></i><span></span></div>
+      <div id="hitmarker" class="hitmarker"><i></i><i></i><i></i><i></i></div>
+      <div id="interaction" class="interaction"><span id="interaction-key">F</span><span id="interaction-text">JACK VEHICLE</span></div>
+
+      <div class="hud-bottom-left">
+        <div class="vitals">
+          <div class="vital-row armor">
+            <span class="vital-label">ARMOR</span>
+            <div class="vital-track"><i id="armor-fill"></i></div>
+            <b id="armor-value">50</b>
+          </div>
+          <div class="vital-row health">
+            <span class="vital-label">HEALTH</span>
+            <div class="vital-track"><i id="health-fill"></i></div>
+            <b id="health-value">100</b>
+          </div>
+        </div>
+        <div id="joystick" class="joystick" aria-label="Movement joystick">
+          <div id="stick-base" class="stick-base">
+            <span class="stick-ring r1"></span>
+            <span class="stick-ring r2"></span>
+            <div id="stick-thumb" class="stick-thumb"></div>
+          </div>
+          <span class="joystick-label">MOVE</span>
+        </div>
+      </div>
+
+      <div class="hud-bottom-right">
+        <div class="weapon-card">
+          <div class="weapon-top"><span id="weapon-name">VELOCITY 9</span><span class="weapon-tag">SIDEARM</span></div>
+          <div class="weapon-ammo"><b id="hud-ammo">12</b><span>/</span><em id="hud-reserve">96</em></div>
+          <div class="weapon-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="touch-actions">
+          <button id="btn-reload" class="touch-button small reload" aria-label="Reload"><span>R</span><small>RELOAD</small></button>
+          <button id="btn-jump" class="touch-button small jump" aria-label="Jump"><span>↑</span><small>JUMP</small></button>
+          <button id="btn-action" class="touch-button action" aria-label="Action"><span id="action-label">JACK</span></button>
+          <button id="btn-fire" class="touch-button fire" aria-label="Fire">
+            <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="13" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="5.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M20 3v9M20 28v9M3 20h9M28 20h9" stroke="currentColor" stroke-width="1.4"/><circle cx="20" cy="20" r="1.5" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="speedo" class="speedo">
+        <span class="speed-gear" id="speed-gear">N</span>
+        <strong id="speed-value">000</strong>
+        <span class="speed-unit">KM/H</span>
+        <div class="speed-track"><i></i></div>
+      </div>
+
+      <div id="location-title" class="location-title"><span>DOWNTOWN</span><small>MIRAGE CITY // NIGHT SHIFT</small></div>
+
+      <div id="feed" class="feed" aria-live="polite"></div>
+
+      <div class="hud-quick">
+        <button id="hud-mute-top" class="bare-icon" aria-label="Audio" hidden></button>
+        <button id="btn-pause" class="pause-button" aria-label="Pause"><i></i><i></i></button>
+      </div>
+    </section>
+
+    <div id="death" class="death-overlay" aria-live="assertive">
+      <div class="death-glow"></div>
+      <div class="death-content">
+        <span class="death-kicker">SIGNAL LOST</span>
+        <h2>WASTED</h2>
+        <p>Mirage Medical is on the way. The city keeps moving.</p>
+        <div class="death-actions">
+          <button id="death-respawn" class="play-button compact"><span class="play-triangle"></span><span class="play-label">RESPAWN</span></button>
+        </div>
+        <small class="death-cost">MEDICAL BILL $500 // CONTRACT VOID</small>
+      </div>
+    </div>
+
+    <div id="pause-menu" class="modal pause-modal" role="dialog" aria-label="Pause menu">
+      <div class="pause-head">
+        <span class="modal-kicker">SESSION PAUSED</span>
+        <h2>TAKE A BREATH.</h2>
+        <p>The city will wait. Mostly.</p>
+      </div>
+      <div class="pause-stats">
+        <div><span>OPERATIVE</span><strong>NIGHTHAWK</strong></div>
+        <div><span>CONTRACTS</span><strong id="pause-contracts">0</strong></div>
+        <div><span>CASH</span><strong id="pause-cash">$2,450</strong></div>
+      </div>
+      <div class="pause-buttons">
+        <button id="btn-resume" class="menu-button primary">RESUME SESSION <span>→</span></button>
+        <button id="btn-settings" class="menu-button">SETTINGS</button>
+        <button id="btn-quit" class="menu-button danger">QUIT TO MENU</button>
+      </div>
+      <div class="pause-tip"><kbd>ESC</kbd> to resume <span>•</span> Progress is saved locally</div>
+    </div>
+
+    <div id="settings" class="modal settings-modal" role="dialog" aria-label="Settings">
+      <div class="modal-head">
+        <div><span class="modal-kicker">SYSTEM</span><h2>SETTINGS</h2></div>
+        <button class="close-button" data-close="settings" aria-label="Close settings">×</button>
+      </div>
+      <div class="setting-row">
+        <div><strong>GRAPHICS</strong><p>High fidelity uses bloom, shadows, and dense detail.</p></div>
+        <button id="btn-quality" class="setting-toggle"><span>HIGH</span></button>
+      </div>
+      <div class="setting-row">
+        <div><strong>AUDIO</strong><p>Procedural synthwave city, engine, and weapon audio.</p></div>
+        <button id="btn-sound" class="setting-toggle"><span>ON</span></button>
+      </div>
+      <div class="setting-row">
+        <div><strong>DISPLAY</strong><p>Fullscreen is recommended on phones and tablets.</p></div>
+        <button id="btn-fullscreen" class="setting-toggle"><span>FULLSCREEN</span></button>
+      </div>
+      <div class="settings-note">On iOS, add to Home Screen for a native-feeling fullscreen session. Best played in landscape.</div>
+    </div>
+
+    <div id="howto" class="modal howto-modal" role="dialog" aria-label="How to play">
+      <div class="modal-head">
+        <div><span class="modal-kicker">FIELD MANUAL</span><h2>HOW TO PLAY</h2></div>
+        <button class="close-button" data-close="howto" aria-label="Close how to play">×</button>
+      </div>
+      <div class="howto-grid">
+        <div class="howto-card">
+          <span class="howto-num">01</span>
+          <h3>MOVE</h3>
+          <p><kbd>W A S D</kbd> or the left stick. Drag anywhere to orbit the camera. Shift to sprint, Space to jump.</p>
+        </div>
+        <div class="howto-card">
+          <span class="howto-num">02</span>
+          <h3>DRIVE</h3>
+          <p>Walk close to any car and press <kbd>F</kbd> or tap <strong>JACK</strong>. The left stick controls throttle and steering.</p>
+        </div>
+        <div class="howto-card">
+          <span class="howto-num">03</span>
+          <h3>FIGHT</h3>
+          <p>Click or use the fire button. <kbd>R</kbd> reloads. Gunfire draws attention, and attention draws stars.</p>
+        </div>
+        <div class="howto-card">
+          <span class="howto-num">04</span>
+          <h3>GET PAID</h3>
+          <p>Follow the gold marker, recover three encrypted drives, then reach the pink dead drop before the timer ends.</p>
+        </div>
+      </div>
+      <div class="howto-foot">
+        <span>ORIGINAL OPEN-WORLD SANDBOX // NOT AFFILIATED WITH ANY EXISTING GAME FRANCHISE</span>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    <div id="damage-vignette" class="damage-vignette"></div>
+    <div id="screen-fade" class="screen-fade"></div>
+    <div id="webgl-error" class="webgl-error hidden">
+      <div class="boot-mark"><span>!</span></div>
+      <h2>WEBGL REQUIRED</h2>
+      <p>Mirage City needs WebGL 2. Try a current version of Safari, Chrome, or Firefox with hardware acceleration enabled.</p>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
