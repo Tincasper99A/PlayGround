@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Afterglow — Free Adult Story Generator</title>
+  <meta name="description" content="Afterglow is a free 18+ story generator for sizzling, fade-to-black romance scenes. Pick a vibe, add your characters, and spark a scene in seconds.">
+  <meta name="theme-color" content="#0a070d">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23ff4d7d'/%3E%3Cstop offset='1' stop-color='%23ffad72'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%230a070d'/%3E%3Cpath d='M32 10c2 10 12 13 12 25a12 12 0 0 1-24 0c0-7 4-10 7-15 1 5 3 7 5 8 2-6 1-12 0-18z' fill='url(%23g)'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Afterglow home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" role="img"><path d="M17.7 2.5c1 5.7 7.3 8.2 7.3 15.1a9 9 0 0 1-18 0c0-4.4 2.4-6.9 4.6-9.8.4 3.2 1.6 4.8 3.3 5.8.7-3.8.6-7.7.1-11.1h2.7z"/></svg>
+      </span>
+      <span class="brand-name">afterglow</span>
+      <span class="brand-pill">free</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#generator">Generator</a>
+      <a href="#how">How it works</a>
+      <a href="#samples">Sample scenes</a>
+    </nav>
+    <div class="header-right">
+      <span class="age-chip">18+</span>
+      <a class="header-cta" href="#generator">Start free</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Free forever · No signup · Fictional adults</p>
+        <h1>Turn a spark into a <em>scene.</em></h1>
+        <p class="hero-lead">The free adult story generator for slow burns, stolen glances, and nights that don’t end early. Pick a vibe and let the tension do the rest.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#generator">
+            Generate a scene
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg>
+          </a>
+          <span class="hero-note">No card. No account.<br>Just heat.</span>
+        </div>
+        <dl class="proof-row" aria-label="Product highlights">
+          <div><dt>1.8M+</dt><dd>scenes sparked</dd></div>
+          <div><dt>0</dt><dd>signup walls</dd></div>
+          <div><dt>100%</dt><dd>free to use</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-glow art-glow-one"></div>
+        <div class="art-glow art-glow-two"></div>
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <article class="story-card">
+          <div class="story-card-top">
+            <span class="live-label"><span class="live-dot"></span> Tonight’s spark</span>
+            <span class="story-age">18+</span>
+          </div>
+          <p class="story-quote">“The elevator doors open. Neither of you moves.”</p>
+          <p class="story-body">A quiet laugh. A hand at the small of a back. The kind of look that makes the whole city disappear.</p>
+          <div class="tag-row">
+            <span>slow burn</span>
+            <span>after hours</span>
+            <span>fade to black</span>
+          </div>
+          <div class="story-card-bottom">
+            <div class="mini-avatars"><span>A</span><span>J</span></div>
+            <span class="read-time">1 min scene</span>
+          </div>
+        </article>
+        <div class="float-note float-note-one"><span>tension</span><strong>92%</strong></div>
+        <div class="float-note float-note-two"><span class="float-spark"></span> always free</div>
+      </div>
+    </section>
+
+    <section class="strip" aria-label="Why Afterglow">
+      <span>Built for tension</span>
+      <span>No explicit content</span>
+      <span>Fictional adults only</span>
+      <span>Your words stay yours</span>
+    </section>
+
+    <section class="generator-section" id="generator">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">The generator</p>
+          <h2>Set the mood. We’ll set the scene.</h2>
+        </div>
+        <p class="section-sub">A complete little story in one click. Change the names, pick a setting, and reroll until the chemistry clicks.</p>
+      </div>
+
+      <div class="generator-shell">
+        <form class="control-panel" id="generator-form">
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">Who’s in the scene?</span>
+              <input id="names" name="names" type="text" maxlength="48" value="Alex &amp; Jordan" autocomplete="off" spellcheck="false">
+            </label>
+            <label class="field">
+              <span class="field-label">Where does it happen?</span>
+              <span class="select-wrap">
+                <select id="setting" name="setting">
+                  <option value="a rain-soaked rooftop">A rain-soaked rooftop</option>
+                  <option value="a dim hotel bar">A dim hotel bar</option>
+                  <option value="an empty office after hours">An empty office after hours</option>
+                  <option value="a midnight train">A midnight train</option>
+                  <option value="a borrowed beach house">A borrowed beach house</option>
+                  <option value="a quiet gallery after closing">A quiet gallery after closing</option>
+                </select>
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>
+              </span>
+            </label>
+          </div>
+
+          <fieldset class="vibe-fieldset">
+            <legend class="field-label">Choose your heat</legend>
+            <div class="vibe-grid">
+              <label class="vibe-option">
+                <input type="radio" name="vibe" value="slow-burn" checked>
+                <span class="vibe-card">
+                  <span class="vibe-number">01</span>
+                  <span class="vibe-name">Slow burn</span>
+                  <span class="vibe-copy">Long looks, low voices.</span>
+                </span>
+              </label>
+              <label class="vibe-option">
+                <input type="radio" name="vibe" value="after-hours">
+                <span class="vibe-card">
+                  <span class="vibe-number">02</span>
+                  <span class="vibe-name">After hours</span>
+                  <span class="vibe-copy">Late nights, bad ideas.</span>
+                </span>
+              </label>
+              <label class="vibe-option">
+                <input type="radio" name="vibe" value="rooftop">
+                <span class="vibe-card">
+                  <span class="vibe-number">03</span>
+                  <span class="vibe-name">City lights</span>
+                  <span class="vibe-copy">Big sky, closer secrets.</span>
+                </span>
+              </label>
+              <label class="vibe-option">
+                <input type="radio" name="vibe" value="weekend">
+                <span class="vibe-card">
+                  <span class="vibe-number">04</span>
+                  <span class="vibe-name">Runaway weekend</span>
+                  <span class="vibe-copy">No rules until Monday.</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <button class="button button-generate" id="generate-button" type="submit">
+            <span class="button-spark" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M13 2l-1.7 6.1L5 10l6.3 1.9L13 18l1.7-6.1L21 10l-6.3-1.9L13 2z"/></svg>
+            </span>
+            Spark my scene
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="form-note">Fictional adults only · 18+ · fade-to-black by design</p>
+        </form>
+
+        <article class="output-panel" aria-live="polite">
+          <div class="output-top">
+            <span class="output-label"><span class="output-dot"></span> Generated scene</span>
+            <button class="copy-button" id="copy-button" type="button">
+              <svg viewBox="0 0 18 18" aria-hidden="true"><rect x="6" y="6" width="8" height="9" rx="2"/><path d="M4 12H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+          <div class="output-meta">
+            <span class="vibe-tag" id="output-vibe">Slow burn</span>
+            <span class="tension-label"><span id="tension-value">84%</span> tension</span>
+          </div>
+          <h3 id="scene-title">The Space Between Seconds</h3>
+          <p id="scene-output">The rain-soaked rooftop is quieter than it should be. Alex &amp; Jordan stand close enough that neither of you pretends not to notice. A glance holds a beat too long, then another. “We should go,” one of you says. Nobody moves. The space between you tightens, warm and impossible to ignore.</p>
+          <div class="tension-meter" aria-hidden="true"><span id="tension-bar"></span></div>
+          <div class="output-bottom">
+            <span class="output-note">100% fictional · zero explicit content</span>
+            <button class="reroll-button" id="reroll-button" type="button">
+              Try another
+              <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M15 8a6 6 0 1 0-1.2 4.4M15 3v5h-5"/></svg>
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="how-section" id="how">
+      <div class="section-heading compact">
+        <div>
+          <p class="kicker">Three steps to heat</p>
+          <h2>Less setup. More <em>tension.</em></h2>
+        </div>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card">
+          <span class="step-number">01</span>
+          <h3>Name your leads</h3>
+          <p>Two names, a setting, and the vibe you’re chasing. That’s the whole setup.</p>
+        </article>
+        <article class="step-card featured">
+          <span class="step-number">02</span>
+          <h3>Spark the scene</h3>
+          <p>Get a complete, atmospheric moment with dialogue, tension, and a clean fade to black.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">03</span>
+          <h3>Reroll the chemistry</h3>
+          <p>Not feeling it? One tap gives you a fresh scene with the same characters and setting.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="samples-section" id="samples">
+      <div class="section-heading compact">
+        <div>
+          <p class="kicker">Fresh from the generator</p>
+          <h2>Scenes with a pulse.</h2>
+        </div>
+        <span class="sample-count">3 of 40+ scene starts</span>
+      </div>
+      <div class="samples-grid">
+        <article class="sample-card">
+          <div class="sample-top"><span class="sample-tag">Slow burn</span><span class="sample-temp">warm</span></div>
+          <h3>Almost, Almost</h3>
+          <p>“You’re standing in my light,” she says. Neither of them steps away. The rain keeps time against the glass, and the whole room narrows to the space between their hands.</p>
+          <span class="sample-read">Read the mood →</span>
+        </article>
+        <article class="sample-card tall">
+          <div class="sample-top"><span class="sample-tag">After hours</span><span class="sample-temp hot">hot</span></div>
+          <h3>The Last Light in the Office</h3>
+          <p>The elevator is out. The stairs are empty. Two colleagues with one umbrella and a very bad excuse to share it. By the time the lobby doors open, Monday is already a secret.</p>
+          <span class="sample-read">Read the mood →</span>
+        </article>
+        <article class="sample-card">
+          <div class="sample-top"><span class="sample-tag">Runaway weekend</span><span class="sample-temp">warm</span></div>
+          <h3>One Key, Two Names</h3>
+          <p>A borrowed beach house, a bottle of something cold, and a rule that neither of them can remember making. The tide comes in. The rest of the world stays out.</p>
+          <span class="sample-read">Read the mood →</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div>
+        <p class="kicker">Your next scene is waiting</p>
+        <h2>Free to start. <em>Impossible to forget.</em></h2>
+      </div>
+      <a class="button button-light" href="#generator">Spark a scene now <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <span class="brand-mark small" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M17.7 2.5c1 5.7 7.3 8.2 7.3 15.1a9 9 0 0 1-18 0c0-4.4 2.4-6.9 4.6-9.8.4 3.2 1.6 4.8 3.3 5.8.7-3.8.6-7.7.1-11.1h2.7z"/></svg>
+      </span>
+      <div><strong>afterglow</strong><span>Free adult story generator</span></div>
+    </div>
+    <p class="footer-legal">18+ only. All characters are fictional adults. Afterglow creates suggestive, fade-to-black story prompts and does not generate explicit imagery. Use responsibly.</p>
+    <div class="footer-links">
+      <a href="#generator">Generator</a>
+      <a href="#how">How it works</a>
+      <a href="#samples">Samples</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Scene copied to clipboard</div>
+  <script src="app.js"></script>
+</body>
+</html>
