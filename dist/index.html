@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b070d">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Nocturne is a members-only platform for verified adult creators, built around consent, age verification, and fair pay.">
+  <title>Nocturne — Adults only, consent first</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body class="gated">
+  <div class="age-gate" data-age-gate role="dialog" aria-modal="true" aria-labelledby="gate-title" aria-describedby="gate-copy">
+    <div class="age-gate__panel">
+      <div class="age-gate__brand">
+        <span class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 19V7.5a2.5 2.5 0 0 1 4.6-1.4L12 12l3.4-5.9A2.5 2.5 0 0 1 20 7.5V19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>Nocturne</span>
+      </div>
+      <p class="age-gate__kicker">Adults only · 18+</p>
+      <h1 id="gate-title">This room is for grown-ups.</h1>
+      <p id="gate-copy" class="age-gate__copy">Nocturne contains adult material intended for people aged 18 or older, or the age of majority in your jurisdiction if higher. By entering you confirm that viewing adult content is legal where you are and that you consent to see it.</p>
+      <form class="age-gate__form" data-age-form novalidate>
+        <label for="dob">Date of birth</label>
+        <input id="dob" name="dob" type="date" autocomplete="bday" required aria-describedby="gate-error">
+        <label class="check">
+          <input id="confirm-age" type="checkbox" required>
+          <span>I confirm I am of legal age and agree to the <a href="/legal.html#terms">Terms</a> and <a href="/legal.html#privacy">Privacy Policy</a>.</span>
+        </label>
+        <p id="gate-error" class="age-gate__error" role="status" aria-live="polite"></p>
+        <div class="age-gate__actions">
+          <button id="enter-site" class="button primary" type="submit" disabled>Enter Nocturne</button>
+          <a class="button ghost" href="https://www.google.com">Leave</a>
+        </div>
+      </form>
+      <p class="age-gate__note">Demo build: this is a self-declaration gate. A production launch must use a certified age-verification vendor and follow local law.</p>
+    </div>
+  </div>
+
+  <div class="site" id="site">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="Nocturne home">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 19V7.5a2.5 2.5 0 0 1 4.6-1.4L12 12l3.4-5.9A2.5 2.5 0 0 1 20 7.5V19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand-name">Nocturne</span>
+          <span class="brand-tag">18+</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="#creators">Creators</a>
+          <a href="#how">How it works</a>
+          <a href="#safety">Safety</a>
+          <a href="/legal.html">Legal</a>
+        </nav>
+        <a class="header-cta" href="#creators">Join the collective <span aria-hidden="true">&nearr;</span></a>
+      </header>
+
+      <main id="main">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy" data-reveal>
+            <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Verified adults · Consent first</p>
+            <h1 id="hero-title">Desire, with <em>consent</em> built in.</h1>
+            <p class="lede">Nocturne is a members-only home for independent adult creators. Every profile is age-verified, every scene is consensual, and every membership pays the person who made it.</p>
+            <div class="actions">
+              <a class="button primary" href="#creators">Meet the creators <span aria-hidden="true">&rarr;</span></a>
+              <a class="button ghost" href="#safety">Read our safety rules</a>
+            </div>
+            <ul class="trust" aria-label="Platform commitments">
+              <li><strong>18+</strong><span>Adults only, always</span></li>
+              <li><strong>ID</strong><span>Verified creators</span></li>
+              <li><strong>100%</strong><span>Consent on record</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-art" data-reveal>
+            <div class="pass">
+              <div class="pass-top">
+                <span class="pass-brand">Nocturne</span>
+                <span class="pass-chip">18+ verified</span>
+              </div>
+              <div class="pass-art">
+                <span class="pass-initials" aria-hidden="true">A&amp;J</span>
+                <span class="pass-stamp">ID checked</span>
+              </div>
+              <div class="pass-body">
+                <div class="pass-head">
+                  <h2>Ari &amp; June</h2>
+                  <span class="verified"><span aria-hidden="true"></span> Verified</span>
+                </div>
+                <p>Editorial · Audio · Couples</p>
+                <div class="pass-row"><span>Membership</span><strong>$12 / month</strong></div>
+                <div class="pass-foot"><span>Consent record on file</span><span>Reviewed 2026</span></div>
+              </div>
+            </div>
+            <div class="float-card float-one" aria-hidden="true"><span class="float-icon">✓</span> Age verified by vendor</div>
+            <div class="float-card float-two" aria-hidden="true"><span class="float-icon">♥</span> Creator keeps 85%</div>
+          </div>
+        </section>
+
+        <section id="creators" class="section" aria-labelledby="creators-title">
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">The collective</p>
+              <h2 id="creators-title">Independent voices, in their own words.</h2>
+            </div>
+            <p>All profiles below are illustrative. On a live platform, every creator completes ID verification and a written consent review before publishing.</p>
+          </div>
+
+          <div class="creators">
+            <article class="creator" data-reveal>
+              <div class="creator-art art-marlowe">
+                <span class="creator-initials" aria-hidden="true">M</span>
+                <span class="creator-badge">18+ · ID verified</span>
+              </div>
+              <div class="creator-body">
+                <div class="creator-head"><h3>Marlowe</h3><span class="creator-price">$9 / mo</span></div>
+                <p>Slow-burn audio and written essays about longing, read in a voice like late-night radio.</p>
+                <div class="chips"><span>Audio</span><span>Solo</span><span>Editorial</span></div>
+              </div>
+            </article>
+
+            <article class="creator" data-reveal>
+              <div class="creator-art art-velvet">
+                <span class="creator-initials" aria-hidden="true">VH</span>
+                <span class="creator-badge">18+ · ID verified</span>
+              </div>
+              <div class="creator-body">
+                <div class="creator-head"><h3>The Velvet Hour</h3><span class="creator-price">$14 / mo</span></div>
+                <p>A couples' studio making moody, cinematic work with a focus on aftercare and communication.</p>
+                <div class="chips"><span>Couples</span><span>Film</span><span>Members only</span></div>
+              </div>
+            </article>
+
+            <article class="creator" data-reveal>
+              <div class="creator-art art-sasha">
+                <span class="creator-initials" aria-hidden="true">S&amp;R</span>
+                <span class="creator-badge">18+ · ID verified</span>
+              </div>
+              <div class="creator-body">
+                <div class="creator-head"><h3>Sasha &amp; Ren</h3><span class="creator-price">$11 / mo</span></div>
+                <p>Playful, consent-forward photo sets and behind-the-scenes notes from two longtime partners.</p>
+                <div class="chips"><span>Photo</span><span>Couples</span><span>New</span></div>
+              </div>
+            </article>
+          </div>
+          <p class="fine-print">Illustrative demo profiles. No real creators or explicit media are shown.</p>
+        </section>
+
+        <section id="how" class="section how" aria-labelledby="how-title">
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">How it works</p>
+              <h2 id="how-title">Three checks. No shortcuts.</h2>
+            </div>
+            <p>Membership should feel effortless. Trust should not. Here is what happens before anyone appears on Nocturne.</p>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card" data-reveal>
+              <span class="step-num">01</span>
+              <h3>Prove you are an adult</h3>
+              <p>A quick self-declaration gets you in the door. At signup, our verification vendor checks a government ID and a live selfie. Minors are never permitted, without exception.</p>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="step-num">02</span>
+              <h3>Creators verify too</h3>
+              <p>Every creator submits government ID, proof of age, and a signed consent record for every collaborator. Records are kept and reviewed before publishing.</p>
+            </article>
+            <article class="step-card" data-reveal>
+              <span class="step-num">03</span>
+              <h3>Subscribe directly</h3>
+              <p>Memberships and tips go to the creator, with a transparent platform fee. Creators can pause, delete content, or revoke consent at any time.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="safety" class="safety" aria-labelledby="safety-title">
+          <div class="safety-inner">
+            <div class="safety-head" data-reveal>
+              <p class="eyebrow">Safety &amp; consent</p>
+              <h2 id="safety-title">A grown-up platform acts like one.</h2>
+              <p>Nocturne is designed around verified age, informed consent, and fast removal. If we cannot verify someone, they do not get published.</p>
+            </div>
+            <div class="safety-grid">
+              <article class="safety-card" data-reveal>
+                <span class="safety-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 5 6v5.5c0 4.2 2.9 7.4 7 9.5 4.1-2.1 7-5.3 7-9.5V6l-7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m9.2 12 2 2 3.6-3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <h3>Age &amp; identity verification</h3>
+                <p>Government ID plus liveness checks for every creator and every member. No anonymous publishing accounts.</p>
+              </article>
+              <article class="safety-card" data-reveal>
+                <span class="safety-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.6 12 20 12 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </span>
+                <h3>Written consent records</h3>
+                <p>Every performer signs an informed consent form. Consent can be revoked, and content is removed when it is.</p>
+              </article>
+              <article class="safety-card" data-reveal>
+                <span class="safety-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="m17.5 7.5 1 1L22 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <h3>Fast takedowns</h3>
+                <p>One report form, a human review queue, and a commitment to act on credible consent or impersonation reports quickly.</p>
+              </article>
+              <article class="safety-card" data-reveal>
+                <span class="safety-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.5"/><path d="M8.4 15.6 15.6 8.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <h3>Zero tolerance for minors</h3>
+                <p>Any apparent minor or coerced content is removed immediately and reported to NCMEC and law enforcement. There is no appeal.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="compliance" aria-labelledby="compliance-title" data-reveal>
+          <div>
+            <p class="eyebrow">The paperwork matters</p>
+            <h2 id="compliance-title">Compliance is part of the product.</h2>
+            <p>Read the rules, the record-keeping statement, and how to report content or request removal.</p>
+          </div>
+          <div class="compliance-links">
+            <a href="/legal.html#terms">Terms of Service <span aria-hidden="true">&rarr;</span></a>
+            <a href="/legal.html#privacy">Privacy Policy <span aria-hidden="true">&rarr;</span></a>
+            <a href="/legal.html#records">18 U.S.C. § 2257 <span aria-hidden="true">&rarr;</span></a>
+            <a href="/legal.html#dmca">DMCA &amp; takedowns <span aria-hidden="true">&rarr;</span></a>
+            <a href="/legal.html#report">Report content <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </section>
+
+        <section class="cta-panel" data-reveal aria-labelledby="cta-title">
+          <div>
+            <p class="eyebrow">For creators</p>
+            <h2 id="cta-title">Your work. Your terms. Your payday.</h2>
+          </div>
+          <div class="cta-side">
+            <p>Keep control of your catalogue, set your own prices, and work with a platform that verifies everyone in the room.</p>
+            <a class="button primary" href="/legal.html#creators">Apply as a creator <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="mark small" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 19V7.5a2.5 2.5 0 0 1 4.6-1.4L12 12l3.4-5.9A2.5 2.5 0 0 1 20 7.5V19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Nocturne</span>
+            <span class="footer-badge">18+</span>
+          </div>
+          <p>An adults-only collective for consenting, verified creators.</p>
+          <div class="footer-links">
+            <a href="/legal.html#terms">Terms</a>
+            <a href="/legal.html#privacy">Privacy</a>
+            <a href="/legal.html#records">2257</a>
+            <a href="/legal.html#dmca">DMCA</a>
+            <a href="/legal.html#report">Report</a>
+            <a href="https://report.cybertip.org" rel="noopener noreferrer nofollow">NCMEC</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="year">2026</span> Nocturne. Demo build.</span>
+          <span>Adults only. No minors. No non-consensual content.</span>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
