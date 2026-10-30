@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#07070d" />
+  <meta name="description" content="Neon District Online — an original open-world crime sandbox built for phones and tablets. Drive, explore, take jobs and outrun the heat." />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Neon District" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/icon-180.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Neon District Online — Open World Mobile</title>
+</head>
+<body>
+  <div id="app">
+    <canvas id="scene" aria-label="Neon District 3D game world"></canvas>
+    <div id="vignette" aria-hidden="true"></div>
+    <div id="speedlines" aria-hidden="true"></div>
+
+    <!-- ===================== IN-GAME HUD ===================== -->
+    <div id="hud" class="hidden" aria-live="polite">
+      <div class="hud-top">
+        <div class="profile glass">
+          <div class="avatar" id="avatar">ND</div>
+          <div class="profile-main">
+            <div class="profile-row">
+              <span class="handle" id="hud-name">ROOK</span>
+              <span class="lvl" id="hud-level">LV 1</span>
+            </div>
+            <div class="bars">
+              <div class="bar health"><i id="health-fill" style="width:100%"></i></div>
+              <div class="bar armor"><i id="armor-fill" style="width:65%"></i></div>
+            </div>
+            <div class="xp"><i id="xp-fill" style="width:20%"></i></div>
+          </div>
+          <div class="cash"><small>CASH</small><b id="hud-cash">$4,250</b></div>
+        </div>
+
+        <div class="mission-pill glass" id="mission-pill">
+          <span class="mission-dot"></span>
+          <span id="mission-text">Freelance mode · explore the district</span>
+          <span class="timer" id="mission-timer" hidden>01:30</span>
+        </div>
+
+        <div class="top-right">
+          <div class="minimap glass" id="minimap-wrap">
+            <canvas id="minimap" width="320" height="320"></canvas>
+            <div class="minimap-ring"></div>
+            <div class="minimap-n">GPS</div>
+            <div class="online-chip"><span class="live-dot"></span><span id="online-count">24</span> ONLINE</div>
+          </div>
+          <div class="wanted" id="wanted" aria-label="wanted level">
+            <i>★</i><i>★</i><i>★</i><i>★</i><i>★</i>
+          </div>
+        </div>
+      </div>
+
+      <div id="objective" class="objective glass">
+        <div class="obj-icon" id="obj-icon">◆</div>
+        <div class="obj-copy">
+          <b id="obj-title">WELCOME TO NEON DISTRICT</b>
+          <span id="obj-sub">Find the gold marker to pick up a job</span>
+        </div>
+        <div class="obj-dist" id="obj-dist">—</div>
+      </div>
+
+      <div id="chat" class="chat glass"></div>
+      <div id="toast" class="toast"></div>
+      <div id="bigmsg" class="bigmsg"></div>
+
+      <div class="hud-foot">
+        <div class="foot-left">
+          <div class="key-hints" id="key-hints">
+            <span><kbd>WASD</kbd> move</span><span><kbd>Shift</kbd> sprint</span><span><kbd>E</kbd> enter car</span><span><kbd>F</kbd> action</span><span><kbd>Space</kbd> jump</span><span><kbd>Esc</kbd> pause</span>
+          </div>
+        </div>
+        <div class="foot-right">
+          <div id="speedo" class="speedo glass hidden">
+            <div class="speed-val"><b id="speed-num">0</b><small>MPH</small></div>
+            <div class="gear" id="gear">D</div>
+            <div class="car-name" id="car-name">VANTA GT</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="prompt" class="prompt hidden"><kbd id="prompt-key">E</kbd><span id="prompt-text">Enter vehicle</span></div>
+      <button id="btn-pause" class="hud-pause" aria-label="Pause">II</button>
+
+      <!-- touch controls -->
+      <div id="touch-left" class="touch-left">
+        <div class="stick" id="stick"><div class="stick-knob" id="stick-knob"></div><div class="stick-core"></div></div>
+        <div class="stick-label">MOVE</div>
+      </div>
+      <div id="touch-right" class="touch-actions">
+        <button class="tbtn primary" id="btn-action" data-action="action"><span class="tb-ic">◆</span><span class="tb-tx" id="btn-action-label">ENTER</span></button>
+        <button class="tbtn" id="btn-sprint" data-action="sprint"><span class="tb-ic">»</span><span class="tb-tx">SPRINT</span></button>
+        <button class="tbtn" id="btn-jump" data-action="jump"><span class="tb-ic">↑</span><span class="tb-tx">JUMP</span></button>
+        <button class="tbtn small" id="btn-horn" data-action="horn"><span class="tb-ic">♪</span></button>
+        <button class="tbtn small" id="btn-cam" data-action="cam"><span class="tb-ic">◎</span></button>
+      </div>
+    </div>
+
+    <!-- ===================== MAIN MENU ===================== -->
+    <div id="menu" class="overlay menu">
+      <header class="menu-top">
+        <div class="brand">
+          <div class="brand-mark"><span>N</span></div>
+          <div class="brand-text">
+            <b>NEON DISTRICT</b><small>ONLINE</small>
+          </div>
+        </div>
+        <div class="server-status glass">
+          <span class="live-dot"></span>
+          <b>SERVERS LIVE</b>
+          <span class="divider"></span>
+          <span id="menu-players">24,318</span> players
+          <span class="divider"></span>
+          <span id="clock">21:04</span>
+        </div>
+      </header>
+
+      <main class="menu-main">
+        <section class="hero">
+          <div class="eyebrow"><span></span> OPEN-WORLD CRIME SANDBOX</div>
+          <h1>OWN THE<br><em>NIGHT.</em></h1>
+          <p class="hero-copy">A living city in your pocket. Steal a ride, take a job,<br class="desk-only" /> and lose the cops in the neon rain. Built for touch.</p>
+          <div class="platforms">
+            <span class="plat">iPhone</span><span class="plat">iPad</span><span class="plat">Android</span><span class="plat alt">Playable in browser</span>
+          </div>
+          <div class="menu-actions">
+            <button id="btn-play" class="btn btn-primary" aria-label="Play now"><span class="btn-glow"></span><span class="btn-label">PLAY NOW</span><span class="btn-sub">drop into the city</span></button>
+            <button id="btn-online" class="btn btn-ghost"><span class="btn-label">ONLINE</span><span class="btn-sub">sessions &amp; crews</span></button>
+            <button id="btn-garage" class="btn btn-ghost"><span class="btn-label">GARAGE</span><span class="btn-sub">pick your ride</span></button>
+            <button id="btn-settings" class="btn btn-ghost small"><span class="btn-label">SETTINGS</span></button>
+            <button id="btn-controls" class="btn btn-ghost small"><span class="btn-label">CONTROLS</span></button>
+          </div>
+        </section>
+
+        <aside class="menu-side">
+          <div class="session-card glass">
+            <div class="session-head">
+              <span class="live-dot"></span><b>FEATURED SESSION</b><span class="ping">24ms</span>
+            </div>
+            <div class="session-map">
+              <div class="map-sun"></div>
+              <div class="map-grid"></div>
+              <div class="map-tag">SUNSET CITY · FREEMODE</div>
+              <div class="map-badge">LIVE</div>
+            </div>
+            <div class="session-rows">
+              <div><span>PLAYERS</span><b>24 / 32</b></div>
+              <div><span>MODE</span><b>Freemode</b></div>
+              <div><span>WEATHER</span><b>Golden hour</b></div>
+            </div>
+            <button id="btn-join" class="btn btn-join"><span>JOIN SESSION</span><i>→</i></button>
+          </div>
+          <div class="daily glass">
+            <small>DAILY DROP</small>
+            <b>Double cash on deliveries</b>
+            <span>Ends in 06:24:11</span>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="menu-foot">
+        <span>Fan-made original game. Not affiliated with or endorsed by Rockstar Games or Take-Two Interactive.</span>
+        <span>v1.0 · WebGL · <span id="install-hint">Install for fullscreen</span></span>
+      </footer>
+    </div>
+
+    <!-- ===================== ONLINE PANEL ===================== -->
+    <div id="panel-online" class="overlay panel hidden">
+      <div class="panel-top"><button class="back" data-close>← BACK</button><h2>ONLINE</h2><span class="badge live">LIVE</span></div>
+      <div class="panel-body online-body">
+        <div class="lobby-list" id="lobby-list"></div>
+        <aside class="crew-card glass">
+          <small>YOUR CREW</small>
+          <h3>NIGHT RUNNERS</h3>
+          <div class="crew-members" id="crew-members"></div>
+          <div class="crew-stat"><span>SESSION CASH</span><b>$128,400</b></div>
+          <div class="crew-stat"><span>REP</span><b>GOLD II</b></div>
+          <button class="btn btn-primary slim" id="btn-join-lobby"><span class="btn-label">JOIN FEATURED SESSION</span></button>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ===================== GARAGE PANEL ===================== -->
+    <div id="panel-garage" class="overlay panel hidden">
+      <div class="panel-top"><button class="back" data-close>← BACK</button><h2>GARAGE</h2><span class="badge">3 / 6 UNLOCKED</span></div>
+      <div class="panel-body">
+        <div class="garage-preview">
+          <canvas id="garage-canvas" width="720" height="420"></canvas>
+          <div class="garage-meta"><b id="garage-name">VANTA GT</b><span id="garage-class">SPORTS · RWD</span></div>
+        </div>
+        <div class="garage-list" id="garage-list"></div>
+      </div>
+    </div>
+
+    <!-- ===================== SETTINGS PANEL ===================== -->
+    <div id="panel-settings" class="overlay panel hidden">
+      <div class="panel-top"><button class="back" data-close>← BACK</button><h2>SETTINGS</h2></div>
+      <div class="panel-body settings-body">
+        <label class="set-row"><span><b>Graphics quality</b><small>Shadows, resolution and effect density</small></span><select id="set-quality"><option value="high">High</option><option value="medium">Medium</option><option value="low">Low / battery saver</option></select></label>
+        <label class="set-row"><span><b>Master volume</b><small>Engine, city and UI</small></span><input id="set-volume" type="range" min="0" max="100" value="55" /></label>
+        <label class="set-row"><span><b>Camera sensitivity</b><small>Look speed on touch</small></span><input id="set-sens" type="range" min="30" max="200" value="100" /></label>
+        <label class="set-row"><span><b>Invert look</b><small>Vertical camera axis</small></span><input id="set-invert" type="checkbox" /></label>
+        <label class="set-row"><span><b>Dynamic resolution</b><small>Keeps frame rate smooth on older phones</small></span><input id="set-dynamic" type="checkbox" checked /></label>
+        <div class="set-actions"><button class="btn btn-ghost slim" id="btn-reset-save">RESET PROGRESS</button><button class="btn btn-primary slim" id="btn-install">INSTALL APP</button></div>
+      </div>
+    </div>
+
+    <!-- ===================== CONTROLS PANEL ===================== -->
+    <div id="panel-controls" class="overlay panel hidden">
+      <div class="panel-top"><button class="back" data-close>← BACK</button><h2>CONTROLS</h2></div>
+      <div class="panel-body controls-body">
+        <div class="ctrl-card glass"><h3>TOUCH · PHONE / TABLET</h3><div class="ctrl-row"><span class="ctrl-key">◉</span><span>Left thumbstick to move or steer</span></div><div class="ctrl-row"><span class="ctrl-key">◉</span><span>Drag the right side to look around</span></div><div class="ctrl-row"><span class="ctrl-key">ENTER</span><span>Get in / out of the nearest car</span></div><div class="ctrl-row"><span class="ctrl-key">JUMP</span><span>Hop fences, vault barriers</span></div><div class="ctrl-row"><span class="ctrl-key">SPRINT</span><span>Run; hold while driving to boost</span></div><div class="ctrl-row"><span class="ctrl-key">FIRE</span><span>Tag bounty targets / start a job</span></div><div class="ctrl-row"><span class="ctrl-key">MUSIC</span><span>Horn while in a vehicle</span></div><div class="ctrl-row"><span class="ctrl-key">◎</span><span>Cycle the camera distance</span></div></div>
+        <div class="ctrl-card glass"><h3>KEYBOARD · DESKTOP</h3><div class="ctrl-row"><span class="ctrl-key">WASD</span><span>Move / drive</span></div><div class="ctrl-row"><span class="ctrl-key">MOUSE</span><span>Hold and drag to look</span></div><div class="ctrl-row"><span class="ctrl-key">SHIFT</span><span>Sprint / boost</span></div><div class="ctrl-row"><span class="ctrl-key">E</span><span>Enter or exit vehicles</span></div><div class="ctrl-row"><span class="ctrl-key">F</span><span>Interact / tag target</span></div><div class="ctrl-row"><span class="ctrl-key">SPACE</span><span>Jump / handbrake</span></div><div class="ctrl-row"><span class="ctrl-key">H</span><span>Horn</span></div><div class="ctrl-row"><span class="ctrl-key">ESC</span><span>Pause menu</span></div></div>
+      </div>
+    </div>
+
+    <!-- ===================== PAUSE ===================== -->
+    <div id="pause" class="overlay pause hidden">
+      <div class="pause-card glass">
+        <div class="eyebrow"><span></span> SESSION PAUSED</div>
+        <h2>NEON DISTRICT</h2>
+        <p id="pause-sub">Session stays live while you idle.</p>
+        <button class="btn btn-primary slim" id="btn-resume"><span class="btn-label">RESUME</span></button>
+        <button class="btn btn-ghost slim" id="btn-pause-settings"><span class="btn-label">SETTINGS</span></button>
+        <button class="btn btn-ghost slim" id="btn-quit"><span class="btn-label">QUIT TO MENU</span></button>
+      </div>
+    </div>
+
+    <!-- install / loading / rotate -->
+    <div id="install-banner" class="install-banner hidden">
+      <div class="install-icon">▣</div>
+      <div><b>Install Neon District</b><small>Fullscreen, offline-ready, home-screen icon</small></div>
+      <button id="btn-install-banner">INSTALL</button>
+      <button id="btn-install-dismiss" class="x">✕</button>
+    </div>
+    <div id="install-help" class="overlay modal hidden">
+      <div class="modal-card glass">
+        <h3>ADD TO HOME SCREEN</h3>
+        <p id="install-help-copy">Tap the Share button in Safari, then choose “Add to Home Screen”. Neon District will launch fullscreen like a native app.</p>
+        <button class="btn btn-primary slim" data-close>GOT IT</button>
+      </div>
+    </div>
+    <div id="loading" class="loading">
+      <div class="load-logo">NEON<span>DISTRICT</span></div>
+      <div class="load-bar"><i id="load-fill"></i></div>
+      <div class="load-text" id="load-text">STREAMING THE CITY…</div>
+    </div>
+    <div id="rotate" class="rotate hidden">Rotate your device for the full widescreen city.</div>
+  </div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

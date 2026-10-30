@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16152c"/>
+      <stop offset="0.55" stop-color="#090a14"/>
+      <stop offset="1" stop-color="#1b0a18"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2ff3ff"/>
+      <stop offset="0.55" stop-color="#ff2d75"/>
+      <stop offset="1" stop-color="#ff9b3d"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="nfill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eafcff"/>
+      <stop offset="0.5" stop-color="#ff6aa2"/>
+      <stop offset="1" stop-color="#ff2d75"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="110" fill="url(#bg)"/>
+  <rect x="10" y="10" width="492" height="492" rx="104" fill="none" stroke="url(#neon)" stroke-width="5" opacity="0.6"/>
+  <g opacity="0.22" stroke="#2ff3ff" stroke-width="1.5">
+    <path d="M56 356 L456 356 M56 396 L456 396 M56 436 L456 436"/>
+    <path d="M96 320 L96 470 M176 320 L176 470 M256 320 L256 470 M336 320 L336 470 M416 320 L416 470"/>
+  </g>
+  <circle cx="256" cy="244" r="148" fill="none" stroke="#ff2d75" stroke-width="2" opacity="0.28"/>
+  <circle cx="256" cy="244" r="170" fill="none" stroke="#2ff3ff" stroke-width="1.5" opacity="0.18" stroke-dasharray="6 12"/>
+  <text x="248" y="316" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="248" font-style="italic" font-weight="900" fill="url(#nfill)" filter="url(#glow)" transform="skewX(-8)">N</text>
+  <text x="256" y="392" text-anchor="middle" font-family="Arial Narrow, Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="14" fill="#eafcff" opacity="0.92">DISTRICT</text>
+  <text x="256" y="430" text-anchor="middle" font-family="Arial Narrow, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="9" fill="#ff2d75">ONLINE</text>
+</svg>
