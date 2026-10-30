@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" data-ready="false">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090a0f">
+  <meta name="description" content="Luma is a free, private, on-device AI image studio with touch and tilt controls.">
+  <title>Luma — Free AI Image Studio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23ffb86b'/%3E%3Cstop offset='.5' stop-color='%23ff5c8a'/%3E%3Cstop offset='1' stop-color='%236c63ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%23090a0f'/%3E%3Ccircle cx='32' cy='32' r='17' fill='url(%23g)'/%3E%3Ccircle cx='39' cy='27' r='13' fill='%23090a0f'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient-orb orb-a"></span>
+    <span class="ambient-orb orb-b"></span>
+    <span class="ambient-grid"></span>
+  </div>
+
+  <div class="app" id="app">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Luma home">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span class="brand-name">Luma<small>studio</small></span>
+      </a>
+
+      <div class="topbar-status">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span><strong>Engine ready</strong><span class="status-sep">/</span>on-device</span>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="chip-button motion-button" id="motionBtn" type="button" aria-pressed="false" aria-label="Enable motion tilt">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 4.6 12 2l4.8 2.6L19 14l-7 8-7-8 2.2-9.4Z"/><path d="M12 2v9m0 0 4 3m-4-3-4 3"/></svg>
+          <span class="motion-copy">Tilt<em id="motionState">Off</em></span>
+        </button>
+        <button class="chip-button icon-only" id="fullscreenBtn" type="button" aria-label="Toggle fullscreen preview" title="Fullscreen preview">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M8 21H3v-5m13 5h5v-5"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="stage-panel" aria-label="Generated artwork preview">
+        <div class="stage" id="stage">
+          <div class="art-frame" id="artFrame" style="--ar: 1">
+            <canvas id="artCanvas" width="1100" height="1100" data-rendered="0" aria-label="Generated artwork"></canvas>
+            <div class="art-shine" aria-hidden="true"></div>
+            <div class="art-meta">
+              <span class="art-index" id="artIndex">01</span>
+              <span class="art-title" id="artTitle">Untitled dream</span>
+            </div>
+            <div class="art-chip" id="artChip">Cinematic</div>
+            <div class="render-sheen" aria-hidden="true"></div>
+          </div>
+          <div class="stage-loading" id="stageLoading" aria-hidden="true">
+            <span class="loading-ring"></span>
+            <span>Composing light…</span>
+          </div>
+        </div>
+
+        <div class="stage-footer">
+          <div class="prompt-readout">
+            <span class="eyebrow">Now rendering</span>
+            <p id="currentPrompt">A quiet monolith at the edge of a luminous sea</p>
+          </div>
+          <div class="stage-actions">
+            <button class="round-button" id="downloadBtn" type="button" aria-label="Download artwork" title="Download PNG">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 20h16"/></svg>
+            </button>
+            <button class="round-button accent" id="rerollBtn" type="button" aria-label="Remix artwork" title="Remix">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-6V1"/><path d="M20 7c-2.2-2.7-5.4-4-9-3.3A9 9 0 1 0 20.7 13"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="control-panel" aria-label="Generation controls">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">Imagine</span>
+            <h1>Make something<br><em>unreal.</em></h1>
+          </div>
+          <span class="free-pill">Free</span>
+        </div>
+
+        <form id="promptForm" class="prompt-form">
+          <div class="label-row">
+            <label class="field-label" for="promptInput">Describe your vision</label>
+            <span class="char-count" id="charCount">0 / 220</span>
+          </div>
+          <div class="prompt-shell">
+            <textarea id="promptInput" name="prompt" rows="3" maxlength="220" spellcheck="false" placeholder="A quiet monolith at the edge of a luminous sea…">A quiet monolith at the edge of a luminous sea</textarea>
+            <button class="surprise-button" id="surpriseBtn" type="button" aria-label="Surprise me with a prompt">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 1.7 5.3L19 9l-5.3 1.7L12 16l-1.7-5.3L5 9l5.3-1.7L12 2Z"/><path d="m19 15 .9 2.6L22 18.5l-2.1.9L19 22l-.9-2.6-2.1-.9 2.1-.9L19 15Z"/></svg>
+              Surprise
+            </button>
+          </div>
+
+          <div class="section-row">
+            <span class="section-label">Style</span>
+            <span class="section-hint">pick a mood</span>
+          </div>
+          <div class="style-grid" id="styleGrid" role="group" aria-label="Visual style">
+            <button class="style-card is-active" type="button" data-style="cinematic" aria-pressed="true">
+              <span class="swatch swatch-cinematic" aria-hidden="true"></span><span>Cinematic</span>
+            </button>
+            <button class="style-card" type="button" data-style="neon" aria-pressed="false">
+              <span class="swatch swatch-neon" aria-hidden="true"></span><span>Neon bloom</span>
+            </button>
+            <button class="style-card" type="button" data-style="ethereal" aria-pressed="false">
+              <span class="swatch swatch-ethereal" aria-hidden="true"></span><span>Ethereal</span>
+            </button>
+            <button class="style-card" type="button" data-style="cosmic" aria-pressed="false">
+              <span class="swatch swatch-cosmic" aria-hidden="true"></span><span>Cosmic</span>
+            </button>
+            <button class="style-card" type="button" data-style="analog" aria-pressed="false">
+              <span class="swatch swatch-analog" aria-hidden="true"></span><span>Analog</span>
+            </button>
+            <button class="style-card" type="button" data-style="brutalist" aria-pressed="false">
+              <span class="swatch swatch-brutalist" aria-hidden="true"></span><span>Brutalist</span>
+            </button>
+          </div>
+
+          <div class="settings-row">
+            <label class="field" for="ratioSelect">
+              <span class="field-label">Frame</span>
+              <span class="select-shell">
+                <select id="ratioSelect" name="ratio">
+                  <option value="1:1">1 : 1</option>
+                  <option value="4:5">4 : 5</option>
+                  <option value="16:9">16 : 9</option>
+                  <option value="9:16">9 : 16</option>
+                </select>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+              </span>
+            </label>
+            <label class="field range-field" for="detailRange">
+              <span class="field-label">Detail <output id="detailValue" for="detailRange">78%</output></span>
+              <input id="detailRange" name="detail" type="range" min="20" max="100" value="78">
+            </label>
+          </div>
+
+          <button class="generate-button" id="generateBtn" type="submit">
+            <span class="generate-spinner" aria-hidden="true"></span>
+            <span class="generate-label">Generate image</span>
+            <span class="generate-hint" aria-hidden="true">⌘↵</span>
+          </button>
+
+          <p class="privacy-note">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            Private by design. Everything renders on your device.
+          </p>
+        </form>
+
+        <div class="history" id="historyPanel">
+          <div class="section-row">
+            <span class="section-label">Recent</span>
+            <button class="text-button" id="clearHistory" type="button">Clear</button>
+          </div>
+          <div class="history-strip" id="historyStrip" aria-live="polite"></div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span>Luma Studio <span class="footer-dot">·</span> Free forever</span>
+      <span class="footer-hint">Touch, type, tilt. <span class="footer-dot">·</span> No sign-in</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
