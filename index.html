@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0b0b13" />
+  <meta name="description" content="Pocket Studio — a mobile music studio with a beat maker, piano, lyric creator and voice recorder." />
+  <title>Pocket Studio</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div>
+          <p class="brand-name">Pocket Studio</p>
+          <p class="brand-sub" id="contextLabel">Beat Maker</p>
+        </div>
+      </div>
+      <button class="icon-btn" id="panicBtn" type="button" aria-label="Stop all sound" title="Stop all sound">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2.5"/></svg>
+      </button>
+    </header>
+
+    <main class="stage">
+      <section class="panel is-active" id="panel-beat" data-tab="beat" role="tabpanel" aria-labelledby="tab-beat">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Sequencer</p>
+            <h1>Beat Maker</h1>
+          </div>
+          <div class="bpm-pill">
+            <span id="bpmValue">92</span><small>BPM</small>
+          </div>
+        </div>
+
+        <div class="transport">
+          <button class="play-btn" id="beatPlay" type="button" aria-label="Play beat">
+            <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+            <svg class="icon-stop" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/></svg>
+          </button>
+          <div class="transport-meta">
+            <label class="bpm-control" for="bpmRange">
+              <span>Tempo</span>
+              <input type="range" id="bpmRange" min="60" max="180" value="92" step="1" />
+            </label>
+            <div class="step-readout" id="stepReadout">Step 1 / 16</div>
+          </div>
+          <button class="ghost-btn" id="beatClear" type="button">Clear</button>
+        </div>
+
+        <div class="preset-row" id="presetRow" aria-label="Beat presets">
+          <button class="chip is-active" type="button" data-preset="boombap">Boom Bap</button>
+          <button class="chip" type="button" data-preset="house">House</button>
+          <button class="chip" type="button" data-preset="trap">Trap</button>
+          <button class="chip" type="button" data-preset="breaks">Breaks</button>
+        </div>
+
+        <div class="sequencer" id="sequencer" aria-label="16 step drum sequencer">
+          <div class="step-ruler" aria-hidden="true">
+            <span></span>
+            <div class="ruler-steps" id="rulerSteps"></div>
+          </div>
+        </div>
+
+        <div class="groove-card">
+          <div class="groove-head">
+            <p class="eyebrow">Groove</p>
+            <span id="swingValue">0% swing</span>
+          </div>
+          <label class="swing-row" for="swingRange">
+            <span>Swing</span>
+            <input type="range" id="swingRange" min="0" max="60" value="0" step="1" />
+          </label>
+          <div class="mix-grid" id="mixGrid"></div>
+        </div>
+
+        <div class="beat-footer">
+          <p class="hint">Tap steps to build a loop. Drag to paint.</p>
+          <p class="hint" id="beatStatus">Loop ready</p>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-piano" data-tab="piano" role="tabpanel" aria-labelledby="tab-piano" hidden>
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Keys</p>
+            <h1>Piano</h1>
+          </div>
+          <div class="octave-control">
+            <button class="icon-btn small" id="octDown" type="button" aria-label="Lower octave">−</button>
+            <span id="octaveLabel">C4</span>
+            <button class="icon-btn small" id="octUp" type="button" aria-label="Raise octave">+</button>
+          </div>
+        </div>
+
+        <div class="voice-row" id="voiceRow" aria-label="Piano voice">
+          <button class="chip is-active" type="button" data-voice="grand">Grand</button>
+          <button class="chip" type="button" data-voice="epiano">E-Piano</button>
+          <button class="chip" type="button" data-voice="pluck">Pluck</button>
+          <button class="chip" type="button" data-voice="pad">Pad</button>
+        </div>
+
+        <div class="note-display">
+          <span class="note-wave" aria-hidden="true"></span>
+          <span id="noteReadout">Play something</span>
+        </div>
+
+        <div class="keyboard-wrap">
+          <div class="keyboard" id="keyboard" role="group" aria-label="Piano keyboard"></div>
+        </div>
+
+        <div class="chord-card">
+          <div class="chord-head">
+            <p class="eyebrow">Quick chords</p>
+            <span>tap to strum</span>
+          </div>
+          <div class="chord-grid" id="chordGrid">
+            <button class="chord-pad" type="button" data-chord="0,4,7" data-name="C"><strong>C</strong><span>C E G</span></button>
+            <button class="chord-pad" type="button" data-chord="9,12,16" data-name="Am"><strong>Am</strong><span>A C E</span></button>
+            <button class="chord-pad" type="button" data-chord="5,9,12" data-name="F"><strong>F</strong><span>F A C</span></button>
+            <button class="chord-pad" type="button" data-chord="7,11,14" data-name="G"><strong>G</strong><span>G B D</span></button>
+            <button class="chord-pad" type="button" data-chord="2,5,9" data-name="Dm"><strong>Dm</strong><span>D F A</span></button>
+            <button class="chord-pad" type="button" data-chord="4,7,11" data-name="Em"><strong>Em</strong><span>E G B</span></button>
+          </div>
+        </div>
+
+        <div class="piano-footer">
+          <p class="hint">Slide across keys for a glissando. Desktop: A–K keys.</p>
+          <button class="ghost-btn" id="sustainBtn" type="button" aria-pressed="false">Sustain</button>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-lyrics" data-tab="lyrics" role="tabpanel" aria-labelledby="tab-lyrics" hidden>
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Writer's room</p>
+            <h1>Lyric Creator</h1>
+          </div>
+          <div class="lyric-actions">
+            <button class="icon-btn small" id="lyricCopy" type="button" aria-label="Copy lyrics" title="Copy">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
+            </button>
+            <button class="icon-btn small" id="lyricDownload" type="button" aria-label="Download lyrics" title="Download">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10m0 0 4-4m-4 4-4-4"/><path d="M5 18h14"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <input class="title-input" id="lyricTitle" type="text" placeholder="Untitled song" maxlength="80" aria-label="Song title" />
+
+        <div class="lyric-editor">
+          <div class="gutter" id="lyricGutter" aria-hidden="true"></div>
+          <textarea id="lyricText" spellcheck="false" placeholder="Write your bars here…&#10;Let the pocket carry the rhythm&#10;Every line lands on the beat" aria-label="Lyrics"></textarea>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat"><strong id="statLines">0</strong><span>lines</span></div>
+          <div class="stat"><strong id="statWords">0</strong><span>words</span></div>
+          <div class="stat"><strong id="statSyllables">0</strong><span>syllables</span></div>
+          <div class="stat"><strong id="statRhymes">0</strong><span>rhymes</span></div>
+        </div>
+
+        <div class="rhyme-card">
+          <div class="rhyme-head">
+            <p class="eyebrow">Rhyme helper</p>
+            <span id="rhymeSeed" class="seed">—</span>
+          </div>
+          <div class="rhyme-chips" id="rhymeChips">
+            <p class="hint">Add two or more lines to see rhyme matches.</p>
+          </div>
+        </div>
+
+        <div class="structure-card">
+          <p class="eyebrow">Song structure</p>
+          <div class="structure-chips" id="structureChips">
+            <button class="structure-chip" type="button" data-section="[Intro]">Intro</button>
+            <button class="structure-chip" type="button" data-section="[Verse]">Verse</button>
+            <button class="structure-chip" type="button" data-section="[Pre-Chorus]">Pre-Chorus</button>
+            <button class="structure-chip" type="button" data-section="[Chorus]">Chorus</button>
+            <button class="structure-chip" type="button" data-section="[Bridge]">Bridge</button>
+            <button class="structure-chip" type="button" data-section="[Outro]">Outro</button>
+          </div>
+        </div>
+
+        <p class="hint save-hint" id="saveHint">Saved locally</p>
+      </section>
+
+      <section class="panel" id="panel-voice" data-tab="voice" role="tabpanel" aria-labelledby="tab-voice" hidden>
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Take it in</p>
+            <h1>Voice Recorder</h1>
+          </div>
+          <span class="rec-badge" id="recBadge" hidden><i></i>REC</span>
+        </div>
+
+        <div class="recorder-card">
+          <canvas id="visualizer" width="640" height="180" aria-label="Live audio waveform"></canvas>
+          <div class="rec-time" id="recTime">00:00</div>
+          <button class="rec-btn" id="recBtn" type="button" aria-label="Start recording">
+            <span class="rec-dot"></span>
+          </button>
+          <p class="rec-status" id="recStatus">Tap to record a take</p>
+        </div>
+
+        <div class="recording-list-head">
+          <p class="eyebrow">Takes</p>
+          <span id="takeCount">0 saved</span>
+        </div>
+        <div class="recording-list" id="recordingList">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg>
+            <p>Your takes will land here</p>
+          </div>
+        </div>
+
+        <div class="tips-card">
+          <p class="eyebrow">Session tips</p>
+          <div class="tip-row"><span>01</span><p>Record a scratch take before chasing a perfect one.</p></div>
+          <div class="tip-row"><span>02</span><p>Use headphones to keep the backing track out of the mic.</p></div>
+          <div class="tip-row"><span>03</span><p>Download a take to keep it beyond this session.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="tabbar" role="tablist" aria-label="Studio sections">
+      <button class="tab is-active" id="tab-beat" data-tab="beat" type="button" role="tab" aria-controls="panel-beat" aria-selected="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+        <span>Beat</span>
+      </button>
+      <button class="tab" id="tab-piano" data-tab="piano" type="button" role="tab" aria-controls="panel-piano" aria-selected="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5v8M12 5v8M16 5v8"/></svg>
+        <span>Piano</span>
+      </button>
+      <button class="tab" id="tab-lyrics" data-tab="lyrics" type="button" role="tab" aria-controls="panel-lyrics" aria-selected="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14M5 11h14M5 16h9"/><path d="M18 14v5"/><circle cx="16" cy="19" r="2"/></svg>
+        <span>Lyrics</span>
+      </button>
+      <button class="tab" id="tab-voice" data-tab="voice" type="button" role="tab" aria-controls="panel-voice" aria-selected="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg>
+        <span>Voice</span>
+      </button>
+    </nav>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
